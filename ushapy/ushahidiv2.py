@@ -236,3 +236,16 @@ def add_report_to_platform(mapurl, title, description, lat, lon, location, categ
 
 	return(r)
 
+""" Get messages from ushahidi website
+
+Parameters:
+* mapurl: String containing URL of Ushahidi Platform instance, e.g. http://www.mymap.com/
+
+"""
+def get_messages(mapurl,user,passwd):
+	#Put list of sites into a dictionary
+	messages = []
+	response = requests.get(url=mapurl+"api?task=messages&by=all",auth=HTTPBasicAuth(user,passwd)) 
+	data = response.json()
+	d = [it ['message'] for it in data['payload']['messages']]
+	return d
