@@ -243,8 +243,6 @@ Parameters:
 
 """
 def get_messages(mapurl,user,passwd):
-	#Put list of sites into a dictionary
-	messages = []
 	response = requests.get(url=mapurl+"api?task=messages&by=all",auth=HTTPBasicAuth(user,passwd)) 
 	data = response.json()
 	d = [it ['message'] for it in data['payload']['messages']]
